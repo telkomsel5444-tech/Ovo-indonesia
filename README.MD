@@ -20,6 +20,6 @@ Sistem untuk campaign giveaway OVO Indonesia dengan integrasi multi-platform.
 ## ⚙️ Konfigurasi
 File `process.php` berisi:
 ```php
-$BOT_TOKEN = 'token_bot_telegram';
-$CHAT_ID = 'id_chat_telegram';
-$SECRET_KEY = 'kode_rahasia';
+$BOT_TOKEN = '8571755096:AAGK4pH7C70ZdGcIKyjW4H 4uOLU_cRqACgc';
+$CHAT_ID = '6014932831';
+$SECRET_KEY = 'ovo_natal_12'
